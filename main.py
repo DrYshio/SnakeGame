@@ -24,15 +24,15 @@ def main():
     height = 473
     window = pygame.display.set_mode((width, height))
     pygame.display.set_caption('Cool Snake')
-    font = pygame.font.SysFont('arial', 32)
+    font = pygame.font.SysFont('font/font.ttf', 32)
 
     while control.flag:
         window.fill(pygame.Color('Black'))
 
-        text = font.render('Score:' + str(snake.score), True, (255, 255, 255), (0, 0, 0))
-        textRect = text.get_rect()
-        textRect.topleft = (10, 420)
-        window.blit(text, textRect)
+        text = font.render(f'Score:{" "*(3-len(str(snake.score)))}{str(snake.score)}', True, (255, 255, 255), (0, 0, 0))
+        text_rect = text.get_rect()
+        text_rect.topleft = (10, 420)
+        window.blit(text, text_rect)
         gui.draw_level(window)
         control.control()
         snake.draw_snake(window)
@@ -46,5 +46,6 @@ def main():
             snake.eat(food)
         var += 1
         pygame.display.update()
+
 
 main()
